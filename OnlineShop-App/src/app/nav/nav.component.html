@@ -1,16 +1,19 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
   <div class="container">
     <a class="navbar-brand" [routerLink]="['/home']">My App</a>
-    <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/home']">Home</a>
+        <a class="nav-link" [routerLink]="['/products']">Products</a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/lists']">Lists</a>
+      <li *ngIf="loggedIn()" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/orders']">My Orders</a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
+      <li *ngIf="loggedIn()" class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/messages']">Messages</a>
       </li>
+      <li class="nav-item" routerlinkActive="active">
+        <a class="nav-link" [routerLink]="['/basket']">Basket</a>
+      </li>    
     </ul>
 
     <div *ngIf="loggedIn()" class="dropdown" dropdown>

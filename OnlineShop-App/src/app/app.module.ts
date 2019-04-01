@@ -14,6 +14,8 @@ import { ErrorInterceptorProvider } from './_services/Interceptors/error.interce
 import { AlertifyService } from './_services/Alertify/AlertifyService.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { ProductsComponent } from './products/products.component';
+import { OrdersComponent } from './orders/orders.component';
 
 
 @NgModule({
@@ -21,14 +23,16 @@ import { RegisterComponent } from './register/register.component';
       AppComponent,
       NavComponent,
       HomeComponent,
-      RegisterComponent
+      RegisterComponent,
+      ProductsComponent,
+      OrdersComponent
    ],
    imports: [
       BrowserModule,
       HttpClientModule,
       FormsModule,
       AppRoutingModule,
-      BsDropdownModule.forRoot(),
+      BsDropdownModule.forRoot()
    ],
    providers: [
       AlertifyService,
