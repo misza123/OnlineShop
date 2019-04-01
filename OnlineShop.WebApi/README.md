@@ -1,4 +1,4 @@
-#Online shop app
+# Online shop app
 
 ## Deploy 
 `dotnet ef database update` - creates database or update with newly added migrations
