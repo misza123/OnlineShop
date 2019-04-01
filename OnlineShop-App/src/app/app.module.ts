@@ -12,11 +12,11 @@ import { NavComponent } from './nav/nav.component';
 import { AuthService } from './_services/Auth/Auth.service';
 import { ErrorInterceptorProvider } from './_services/Interceptors/error.interceptor';
 import { AlertifyService } from './_services/Alertify/AlertifyService.service';
+import { AuthGuard } from './_guards/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ProductsComponent } from './products/products.component';
 import { OrdersComponent } from './orders/orders.component';
-
 
 @NgModule({
    declarations: [
@@ -37,6 +37,8 @@ import { OrdersComponent } from './orders/orders.component';
    providers: [
       AlertifyService,
       ErrorInterceptorProvider,
+      AuthService,
+      AuthGuard
    ],
    bootstrap: [
       AppComponent
