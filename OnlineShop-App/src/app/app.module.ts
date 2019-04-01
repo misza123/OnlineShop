@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 
 import { AuthService } from './_services/Auth/Auth.service';
+import { ErrorInterceptorProvider } from './_services/Interceptors/error.interceptor';
 import { AlertifyService } from './_services/Alertify/AlertifyService.service';
 
 
@@ -25,7 +26,7 @@ import { AlertifyService } from './_services/Alertify/AlertifyService.service';
    ],
    providers: [
       AlertifyService,
-      AuthService
+      ErrorInterceptorProvider,
    ],
    bootstrap: [
       AppComponent
