@@ -1,0 +1,21 @@
+[
+    '{{repeat(5)}}',
+    {
+      Username: '{{firstName()}}',
+      Password: 'password',
+      Name: function(){ return this.Username; },
+      Surname: '{{surname()}}',
+      Addresses:[
+        {
+          City: '{{city()}}',
+          Street: '{{street()}}',
+          Name: function(){ return this.City + '_' + this.Street; },
+          Country: '{{country()}}',
+          PostalCode: '{{integer(100, 10000)}}',
+          BuildingNumber: '{{integer(1, 100)}}',
+          FlatNumber: '{{integer(1, 50)}}',
+          IsMain: true 
+        }
+      ]
+    }
+  ]

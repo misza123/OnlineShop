@@ -1,0 +1,15 @@
+[
+  '{{repeat(5)}}',
+  {
+    Name:'',
+    Description: '{{lorem([3], "paragraphs")}}',
+    Price: '{{floating([1], [300],[2])}}',
+    Photos:[
+      {
+        Url: function (num) {return'http://lorempixel.com/400/400/technics/'+num.integer(1,100);},
+        Description: '{{lorem([20], "words")}}',
+        IsMain: true 
+      }
+    ]
+  }
+]

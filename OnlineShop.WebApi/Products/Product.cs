@@ -10,6 +10,5 @@ namespace OnlineShop.WebApi.Products
         public decimal Price { get; set; }
         public ICollection<Photo> Photos { get; set; }
         public virtual ICollection<OrderProduct> OrderProduct { get; set; }
-
     }
 }
