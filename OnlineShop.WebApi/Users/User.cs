@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using OnlineShop.WebApi.Products;
+using OnlineShop.WebApi.Products.Orders;
 
 namespace OnlineShop.WebApi.Users
 {

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OnlineShop.WebApi.DataAccess;
 
-namespace OnlineShop.WebApi.Products
+namespace OnlineShop.WebApi.Products.Orders
 {
     public class OrderRepository : IRepository<Order>
     {
