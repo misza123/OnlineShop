@@ -18,8 +18,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using OnlineShop.WebApi.DataAccess;
+using OnlineShop.WebApi.DataExample;
 using OnlineShop.WebApi.Helpers;
 using OnlineShop.WebApi.Users;
+using OnlineShop.WebApi.Users.Helpers;
 
 namespace OnlineShop.WebApi
 {
@@ -38,6 +40,7 @@ namespace OnlineShop.WebApi
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors();
+            services.AddTransient<Seed>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(opt =>
@@ -53,7 +56,7 @@ namespace OnlineShop.WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, Seed seeder)
         {
             if (env.IsDevelopment())
             {
@@ -77,6 +80,7 @@ namespace OnlineShop.WebApi
                 });
             }
 
+            seeder.SeedDataAsync().Wait(); //should be executed only for development
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthentication();
             // app.UseHttpsRedirection();

@@ -1,0 +1,92 @@
+[
+    {
+      "Username": "Tanya",
+      "Password": "password",
+      "Name": "Tanya",
+      "Surname": "Moreno",
+      "Addresses": [
+        {
+          "City": "Ladera",
+          "Street": "Anthony Street",
+          "Name": "Ladera_Anthony Street",
+          "Country": "Russian Federation",
+          "PostalCode": 7796,
+          "BuildingNumber": 77,
+          "FlatNumber": 5,
+          "IsMain": true
+        }
+      ]
+    },
+    {
+      "Username": "May",
+      "Password": "password",
+      "Name": "May",
+      "Surname": "Merrill",
+      "Addresses": [
+        {
+          "City": "Lydia",
+          "Street": "Clarkson Avenue",
+          "Name": "Lydia_Clarkson Avenue",
+          "Country": "French Southern Territories",
+          "PostalCode": 5317,
+          "BuildingNumber": 37,
+          "FlatNumber": 20,
+          "IsMain": true
+        }
+      ]
+    },
+    {
+      "Username": "Mara",
+      "Password": "password",
+      "Name": "Mara",
+      "Surname": "Welch",
+      "Addresses": [
+        {
+          "City": "Rodman",
+          "Street": "Riverdale Avenue",
+          "Name": "Rodman_Riverdale Avenue",
+          "Country": "Niue",
+          "PostalCode": 4681,
+          "BuildingNumber": 61,
+          "FlatNumber": 18,
+          "IsMain": true
+        }
+      ]
+    },
+    {
+      "Username": "Lawrence",
+      "Password": "password",
+      "Name": "Lawrence",
+      "Surname": "Fitzpatrick",
+      "Addresses": [
+        {
+          "City": "Dellview",
+          "Street": "Hornell Loop",
+          "Name": "Dellview_Hornell Loop",
+          "Country": "Guam",
+          "PostalCode": 6834,
+          "BuildingNumber": 36,
+          "FlatNumber": 38,
+          "IsMain": true
+        }
+      ]
+    },
+    {
+      "Username": "Melody",
+      "Password": "password",
+      "Name": "Melody",
+      "Surname": "Workman",
+      "Addresses": [
+        {
+          "City": "Witmer",
+          "Street": "Vanderbilt Avenue",
+          "Name": "Witmer_Vanderbilt Avenue",
+          "Country": "Turks and Caicos Islands",
+          "PostalCode": 9935,
+          "BuildingNumber": 3,
+          "FlatNumber": 1,
+          "IsMain": true
+        }
+      ]
+    }
+  ]

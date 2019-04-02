@@ -1,7 +1,7 @@
 [
   '{{repeat(5)}}',
   {
-    Name:'',
+    Name: '{{lorem([1], "words")}}',
     Description: '{{lorem([3], "paragraphs")}}',
     Price: '{{floating([1], [300],[2])}}',
     Photos:[
