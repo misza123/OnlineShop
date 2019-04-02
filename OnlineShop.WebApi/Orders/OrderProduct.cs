@@ -1,3 +1,5 @@
+using OnlineShop.WebApi.Products;
+
 namespace OnlineShop.WebApi.Orders
 {
     public class OrderProduct

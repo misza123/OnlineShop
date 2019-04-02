@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OnlineShop.WebApi.DataAccess;
-using OnlineShop.WebApi.Products.Orders;
+using OnlineShop.WebApi.Orders;
 
 namespace OnlineShop.WebApid.Orders
 {

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using OnlineShop.WebApi.Orders;
 using OnlineShop.WebApi.Products;
-using OnlineShop.WebApi.Products.Orders;
 using OnlineShop.WebApi.Users;
 
 namespace OnlineShop.WebApi.DataAccess
