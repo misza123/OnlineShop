@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OnlineShop.WebApi.DataAccess;
+using OnlineShop.WebApi.Products.Orders;
 
-namespace OnlineShop.WebApi.Products.Orders
+namespace OnlineShop.WebApid.Orders
 {
     public class OrderRepository : IRepository<Order>
     {

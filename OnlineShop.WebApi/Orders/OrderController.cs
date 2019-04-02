@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace OnlineShop.WebApi.Products.Orders
+namespace OnlineShop.WebApi.Orders
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using OnlineShop.WebApi.Users;
 
-namespace OnlineShop.WebApi.Products.Orders
+namespace OnlineShop.WebApi.Orders
 {
     public class Order
     {
