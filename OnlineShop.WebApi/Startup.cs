@@ -80,7 +80,7 @@ namespace OnlineShop.WebApi
                 });
             }
 
-            seeder.SeedDataAsync().Wait(); //should be executed only for development
+            // seeder.SeedDataAsync().Wait(); //should be executed only for development
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthentication();
             // app.UseHttpsRedirection();
