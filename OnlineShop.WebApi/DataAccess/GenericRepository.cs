@@ -33,5 +33,10 @@ namespace OnlineShop.WebApi.DataAccess
         {
             return await _dataContext.Set<T>().ToListAsync();
         }
+
+        public Task<ICollection<T>> GetAllAsync(Expression<Func<T, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

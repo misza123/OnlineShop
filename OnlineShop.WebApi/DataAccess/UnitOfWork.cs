@@ -1,38 +1,40 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace OnlineShop.WebApi.DataAccess
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DataContext _dataContext;
-        private IDictionary<Type, object> repositories = new Dictionary<Type, object>();
-        public UnitOfWork(DataContext dataContext)
+        private readonly TransactionScope _transactionScope;
+
+        public UnitOfWork(DataContext dataContext, IsolationLevel isolationLevel)
         {
             _dataContext = dataContext;
-        }
-
-        public IRepository<T> Repository<T>() where T : class
-        {
-            if (repositories.Keys.Contains(typeof(T)))
-            {
-                return repositories[typeof(T)] as IRepository<T>;
-            }
-            
-            IRepository<T> repo = new GenericRepository<T>(_dataContext);
-            repositories.Add(typeof(T), repo);
-            return repo;
+            //  todo make it works
+            // _transactionScope = new TransactionScope(
+            //     TransactionScopeOption.Required,
+            //     new TransactionOptions
+            //     {
+            //         IsolationLevel = isolationLevel,
+            //         Timeout = TransactionManager.DefaultTimeout
+            //     }, 
+            //     TransactionScopeAsyncFlowOption.Enabled
+            // );
         }
 
         public async Task SaveChangesAsync()
         {
             await _dataContext.SaveChangesAsync();
+            // _transactionScope.Complete();
         }
 
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         private bool disposed = false;
@@ -43,6 +45,7 @@ namespace OnlineShop.WebApi.DataAccess
                 if (disposing)
                 {
                     _dataContext.Dispose();
+                    // _transactionScope.Dispose();
                 }
             }
             this.disposed = true;

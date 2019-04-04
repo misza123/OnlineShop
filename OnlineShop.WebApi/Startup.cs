@@ -42,6 +42,8 @@ namespace OnlineShop.WebApi
             services.AddCors();
             services.AddTransient<Seed>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IUnitOfWorkFactory, TransactionScopeUnitOfWorkFactory>();
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(opt =>
                     {

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OnlineShop.WebApi.DataAccess;
@@ -8,16 +9,16 @@ namespace OnlineShop.WebApi.Users
 {
     public class AuthService : IAuthService
     {
-        private readonly DataContext _context;
+        private readonly IRepository<User> _userRepository;
 
-        public AuthService(DataContext context)
+        public AuthService(IRepository<User> userRepository)
         {
-            _context = context;
+            _userRepository = userRepository;
         }
 
         public async Task<User> LoginAsync(string username, string password)
         {
-            var user = await _context.Users.SingleOrDefaultAsync(x => x.Username.Equals(username, StringComparison.InvariantCultureIgnoreCase));
+            var user = await _userRepository.GetDetailAsync(x => x.Username.Equals(username, StringComparison.InvariantCultureIgnoreCase));
 
             if (user == null)
             {
@@ -57,15 +58,15 @@ namespace OnlineShop.WebApi.Users
             user.PasswordHash = hashedPassword.hash;
             user.PasswordSalt = hashedPassword.salt;
 
-            await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
+            await _userRepository.AddAsync(user);
+            // await _context.SaveChangesAsync();
 
             return user;
         }
 
         public async Task<bool> UserExistsAsync(string username)
         {
-            if (await _context.Users.AnyAsync(x => x.Username.Equals(username, StringComparison.InvariantCultureIgnoreCase)))
+            if ((await _userRepository.GetDetailAsync(x => x.Username.Equals(username, StringComparison.InvariantCultureIgnoreCase))) != null)
             {
                 return true;
             }

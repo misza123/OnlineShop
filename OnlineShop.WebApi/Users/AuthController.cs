@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using OnlineShop.WebApi.DataAccess;
 using OnlineShop.WebApi.Users.Dtos;
 
 namespace OnlineShop.WebApi.Users
@@ -15,12 +16,14 @@ namespace OnlineShop.WebApi.Users
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
-        private readonly IConfiguration config;
+        private readonly IConfiguration _config;
+        private readonly IUnitOfWorkFactory _uowFactory;
 
-        public AuthController(IAuthService authService, IConfiguration config)
+        public AuthController(IAuthService authService, IConfiguration config, IUnitOfWorkFactory uowFactory)
         {
             _authService = authService;
-            this.config = config;
+            _config = config;
+            _uowFactory = uowFactory;
         }
 
         [HttpPost("register")]
@@ -40,33 +43,39 @@ namespace OnlineShop.WebApi.Users
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDTO userForLoginDTO)
         {
-            var user = await _authService.LoginAsync(userForLoginDTO.Username, userForLoginDTO.Password);
-
-            if (user == null)
+            using (var uow = _uowFactory.Create())
             {
-                return Unauthorized();
+                var user = await _authService.LoginAsync(userForLoginDTO.Username, userForLoginDTO.Password);
+
+                if (user == null)
+                {
+                    return Unauthorized();
+                }
+
+                var claims = new[]{
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                    new Claim(ClaimTypes.Name, user.Username)
+                };
+
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
+
+                var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(claims),
+                    Expires = DateTime.Now.AddDays(1),
+                    SigningCredentials = credentials
+                };
+
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+
+                await uow.SaveChangesAsync();
+
+                return Ok(new { token = tokenHandler.WriteToken(token) });
             }
 
-            var claims = new[]{
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.Username)
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config.GetSection("AppSettings:Token").Value));
-
-            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
-
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddDays(1),
-                SigningCredentials = credentials
-            };
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-
-            return Ok(new { token = tokenHandler.WriteToken(token) });
         }
     }
 }

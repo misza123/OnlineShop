@@ -32,6 +32,11 @@ namespace OnlineShop.WebApid.Orders
             return await _dataContext.Orders.ToListAsync();
         }
 
+        public Task<ICollection<Order>> GetAllAsync(Expression<Func<Order, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Order> GetAsync(int id)
         {
             return await _dataContext.Orders.SingleOrDefaultAsync(x => x.Id == id);

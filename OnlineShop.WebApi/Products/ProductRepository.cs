@@ -31,6 +31,11 @@ namespace OnlineShop.WebApi.Products
             return await _dataContext.Products.ToListAsync();
         }
 
+        public Task<ICollection<Product>> GetAllAsync(Expression<Func<Product, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Product> GetAsync(int id)
         {
             return await _dataContext.Products.SingleOrDefaultAsync(x => x.Id == id);
