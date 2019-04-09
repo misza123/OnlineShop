@@ -19,12 +19,14 @@ namespace OnlineShop.WebApi.Orders
             _orderRepository = orderRepository;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetOrdersAsync()
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetOrdersAsync(int userId)
         {
-            var userId = 1;
-            var orders = await  _orderRepository.GetAllAsync(x=>x.User.Id == userId);
+            using (var uow = _uowFactory.Create())
+        {
+                var orders = await _orderRepository.GetAllAsync(x => x.User.Id == userId);
             return Ok(orders);
         }
     }
+}
 }
