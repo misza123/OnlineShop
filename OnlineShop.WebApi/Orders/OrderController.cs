@@ -23,10 +23,10 @@ namespace OnlineShop.WebApi.Orders
         public async Task<IActionResult> GetOrdersAsync(int userId)
         {
             using (var uow = _uowFactory.Create())
-        {
+            {
                 var orders = await _orderRepository.GetAllAsync(x => x.User.Id == userId);
-            return Ok(orders);
+                return Ok(orders);
+            }
         }
     }
-}
 }
