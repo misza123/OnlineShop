@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -20,6 +22,7 @@ using Microsoft.IdentityModel.Tokens;
 using OnlineShop.WebApi.DataAccess;
 using OnlineShop.WebApi.DataExample;
 using OnlineShop.WebApi.Helpers;
+using OnlineShop.WebApi.IoC;
 using OnlineShop.WebApi.Users;
 using OnlineShop.WebApi.Users.Helpers;
 
@@ -35,16 +38,17 @@ namespace OnlineShop.WebApi
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors();
-            services.AddTransient<Seed>();
-            services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<IUnitOfWorkFactory, TransactionScopeUnitOfWorkFactory>();
-            services.AddScoped<IRepository<User>, UserRepository>();
-            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
+            
+            var containerBuilder = new ContainerBuilder();
+            containerBuilder.RegisterModule<MainModule>();
+            containerBuilder.Populate(services);
+            var container = containerBuilder.Build();
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(opt =>
                     {
@@ -56,6 +60,7 @@ namespace OnlineShop.WebApi
                             ValidateAudience = false
                         };
                     });
+            return new AutofacServiceProvider(container);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
