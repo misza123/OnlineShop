@@ -45,12 +45,6 @@ namespace OnlineShop.WebApi
                         opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                     });
             services.AddCors();
-            
-            var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterModule<MainModule>();
-            containerBuilder.Populate(services);
-            var container = containerBuilder.Build();
-
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(opt =>
                     {
@@ -62,6 +56,12 @@ namespace OnlineShop.WebApi
                             ValidateAudience = false
                         };
                     });
+            
+            var containerBuilder = new ContainerBuilder();
+            containerBuilder.RegisterModule<MainModule>();
+            containerBuilder.Populate(services);
+            var container = containerBuilder.Build();
+
             return new AutofacServiceProvider(container);
         }
 
