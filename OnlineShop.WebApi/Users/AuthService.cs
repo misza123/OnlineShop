@@ -59,14 +59,14 @@ namespace OnlineShop.WebApi.Users
             user.PasswordSalt = hashedPassword.salt;
 
             await _userRepository.AddAsync(user);
-            // await _context.SaveChangesAsync();
 
             return user;
         }
 
         public async Task<bool> UserExistsAsync(string username)
         {
-            if ((await _userRepository.GetDetailAsync(x => x.Username.Equals(username, StringComparison.InvariantCultureIgnoreCase))) != null)
+            var users = await _userRepository.GetAllAsync(x => x.Username.Equals(username, StringComparison.InvariantCultureIgnoreCase));
+            if (users.Any())
             {
                 return true;
             }
