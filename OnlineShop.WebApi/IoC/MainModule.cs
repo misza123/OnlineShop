@@ -10,6 +10,8 @@ namespace OnlineShop.WebApi.IoC
     {
         protected override void Load(ContainerBuilder builder)
         {
+            //TODO add test for lifetime cycle of uow and dataContext
+            builder.RegisterType<DataContext>().InstancePerLifetimeScope();
             builder.RegisterType<Seed>().InstancePerDependency();
             builder.RegisterType<AuthService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<TransactionScopeUnitOfWorkFactory>().As<IUnitOfWorkFactory>().InstancePerLifetimeScope();

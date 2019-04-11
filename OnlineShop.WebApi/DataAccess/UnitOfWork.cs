@@ -28,9 +28,7 @@ namespace OnlineShop.WebApi.DataAccess
         public async Task SaveChangesAsync()
         {
             await _dataContext.SaveChangesAsync();
-            // _transactionScope.Complete();
         }
-
         public void Dispose()
         {
             Dispose(true);
@@ -49,6 +47,12 @@ namespace OnlineShop.WebApi.DataAccess
                 }
             }
             this.disposed = true;
+        }
+
+        public async Task CompleteAsync()
+        {
+            await SaveChangesAsync();
+            // _transactionScope.Complete();
         }
     }
 }

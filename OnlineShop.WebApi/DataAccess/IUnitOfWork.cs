@@ -5,6 +5,7 @@ namespace OnlineShop.WebApi.DataAccess
 {
     public interface IUnitOfWork : IDisposable
     {
-         Task SaveChangesAsync();
+        Task CompleteAsync();
+        Task SaveChangesAsync();
     }
 }

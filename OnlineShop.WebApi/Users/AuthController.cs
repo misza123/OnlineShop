@@ -29,15 +29,20 @@ namespace OnlineShop.WebApi.Users
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserForRegisterDTO userForRegisterDTO)
         {
-            if (await _authService.UserExistsAsync(userForRegisterDTO.Username))
+            using (var uow = _uowFactory.Create())
             {
-                return BadRequest("Username already exists.");
+                if (await _authService.UserExistsAsync(userForRegisterDTO.Username))
+                {
+                    return BadRequest("Username already exists.");
+                }
+
+                var user = new User() { Username = userForRegisterDTO.Username };
+                await _authService.RegisterAsync(user, userForRegisterDTO.Password);
+
+                await uow.CompleteAsync();
+
+                return StatusCode(201);
             }
-
-            var user = new User() { Username = userForRegisterDTO.Username };
-            await _authService.RegisterAsync(user, userForRegisterDTO.Password);
-
-            return StatusCode(201);
         }
 
         [HttpPost("login")]
@@ -71,7 +76,7 @@ namespace OnlineShop.WebApi.Users
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var token = tokenHandler.CreateToken(tokenDescriptor);
 
-                await uow.SaveChangesAsync();
+                await uow.CompleteAsync();
 
                 return Ok(new { token = tokenHandler.WriteToken(token) });
             }

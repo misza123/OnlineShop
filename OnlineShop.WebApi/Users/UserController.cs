@@ -22,9 +22,12 @@ namespace OnlineShop.WebApi.Users
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserDetails(int id)
         {
-            var user = await _userRepository.GetDetailAsync(x=>x.Id == id);
+            using (var uow = _uowFactory.Create())
+            {
+                var user = await _userRepository.GetDetailAsync(x => x.Id == id);
 
-            return Ok(user);
+                return Ok(user);
+            }
         }
     }
 }

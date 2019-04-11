@@ -25,6 +25,8 @@ namespace OnlineShop.WebApi.Orders
             using (var uow = _uowFactory.Create())
             {
                 var orders = await _orderRepository.GetAllAsync(x => x.User.Id == userId);
+                await uow.CompleteAsync();
+
                 return Ok(orders);
             }
         }
