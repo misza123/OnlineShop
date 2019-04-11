@@ -8,6 +8,7 @@ namespace OnlineShop.WebApi.Products.Dtos
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public ICollection<Photo> Photos { get; set; }
+        public string PhotoURL { get; set; }
+        public ICollection<PhotoForDetailsDTO> Photos { get; set; }
     }
 }

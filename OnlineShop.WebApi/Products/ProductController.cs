@@ -41,7 +41,7 @@ namespace OnlineShop.WebApi.Products
             using (var uow = _uowFactory.Create())
             {
                 var product = await _productRepository.GetDetailAsync(x=>x.Id == id);
-                var result = _mapper.Map<ProductForListDTO>(product);
+                var result = _mapper.Map<ProductForDetailsDTO>(product);
 
                 await uow.CompleteAsync();
                 return Ok(result);
