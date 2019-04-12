@@ -8,7 +8,7 @@ import { Product } from 'src/app/products/product';
   providedIn: 'root'
 })
 export class ProductService {
-  baseUrl = environment.apiURL + 'auth/';
+  baseUrl = environment.apiURL;
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<Product[]> {
