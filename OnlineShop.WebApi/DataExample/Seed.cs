@@ -23,9 +23,21 @@ namespace OnlineShop.WebApi.DataExample
         public async Task SeedDataAsync()
         {
             await SeedUsersDataAsync();
-            await SeedProductsDataAsync();
-            await SeedOrdersDataAsync();
-            await SeedOrdersProductAsync();
+            await SeedDataAsync<Product>("DataExample/ProductsExampleData.json");
+            await SeedDataAsync<Order>("DataExample/OrdersData.json");
+            await SeedDataAsync<OrderProduct>("DataExample/OrdersProductData.json");
+        }
+
+        private async Task SeedDataAsync<T>(string jsonDataPath) where T : class
+        {
+            var data = File.ReadAllText(jsonDataPath);
+            var deserializedObjects = JsonConvert.DeserializeObject<List<T>>(data);
+            foreach (var deserializedObject in deserializedObjects)
+            {
+                await _dataAccess.Set<T>().AddAsync(deserializedObject);
+            }
+
+            await _dataAccess.SaveChangesAsync();
         }
 
         private async Task SeedUsersDataAsync()
@@ -39,40 +51,6 @@ namespace OnlineShop.WebApi.DataExample
                 user.PasswordSalt = password.salt;
 
                 await _dataAccess.Users.AddAsync(user);
-            }
-
-            await _dataAccess.SaveChangesAsync();
-        }
-        private async Task SeedProductsDataAsync()
-        {
-            var data = File.ReadAllText("DataExample/ProductsExampleData.json");
-            var products = JsonConvert.DeserializeObject<List<Product>>(data);
-            foreach (var product in products)
-            {
-                await _dataAccess.Products.AddAsync(product);
-            }
-
-            await _dataAccess.SaveChangesAsync();
-        }
-
-        private async Task SeedOrdersDataAsync()
-        {
-            var data = File.ReadAllText("DataExample/OrdersData.json");
-            var orders = JsonConvert.DeserializeObject<List<Order>>(data);
-            foreach (var order in orders)
-            {
-                await _dataAccess.Orders.AddAsync(order);
-            }
-
-            await _dataAccess.SaveChangesAsync();
-        }
-
-        private async Task SeedOrdersProductAsync(){
-                        var data = File.ReadAllText("DataExample/OrdersProductData.json");
-            var ordersProducts = JsonConvert.DeserializeObject<List<OrderProduct>>(data);
-            foreach (var ordersProduct in ordersProducts)
-            {
-                await _dataAccess.OrderProducts.AddAsync(ordersProduct);
             }
 
             await _dataAccess.SaveChangesAsync();
