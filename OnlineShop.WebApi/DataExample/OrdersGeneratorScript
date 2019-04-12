@@ -2,7 +2,7 @@
   '{{repeat(5)}}',
   {
     UserId: '{{random(1,2,3,4,5)}}',
-    DateOfSubmission: '{{date(new Date(2014, 0, 1), new Date())}}',
+    DateOfSubmission: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")}}',
     DateOfShipment: function() { return new Date(); }
   }
 ]

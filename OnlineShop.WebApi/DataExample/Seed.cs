@@ -24,8 +24,8 @@ namespace OnlineShop.WebApi.DataExample
         {
             await SeedUsersDataAsync();
             await SeedDataAsync<Product>("DataExample/ProductsExampleData.json");
-            await SeedDataAsync<Order>("DataExample/OrdersData.json");
-            await SeedDataAsync<OrderProduct>("DataExample/OrdersProductData.json");
+            await SeedDataAsync<Order>("DataExample/OrdersExampleData.json");
+            await SeedDataAsync<OrderProduct>("DataExample/OrdersProductExampleData.json");
         }
 
         private async Task SeedDataAsync<T>(string jsonDataPath) where T : class
