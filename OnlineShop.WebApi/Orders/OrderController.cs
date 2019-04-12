@@ -1,7 +1,10 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnlineShop.WebApi.DataAccess;
+using OnlineShop.WebApi.Orders.Dtos;
 
 namespace OnlineShop.WebApi.Orders
 {
@@ -12,11 +15,13 @@ namespace OnlineShop.WebApi.Orders
     {
         private readonly IUnitOfWorkFactory _uowFactory;
         private readonly IRepository<Order> _orderRepository;
+        private readonly IMapper _mapper;
 
-        public OrderController(IUnitOfWorkFactory uowFactory, IRepository<Order> orderRepository)
+        public OrderController(IUnitOfWorkFactory uowFactory, IRepository<Order> orderRepository, IMapper mapper)
         {
             _uowFactory = uowFactory;
             _orderRepository = orderRepository;
+            _mapper = mapper;
         }
 
         [HttpGet("{userId}")]
@@ -25,6 +30,7 @@ namespace OnlineShop.WebApi.Orders
             using (var uow = _uowFactory.Create())
             {
                 var orders = await _orderRepository.GetAllAsync(x => x.User.Id == userId);
+                var result = _mapper.Map<ICollection<OrderDTO>>(orders);
                 await uow.CompleteAsync();
 
                 return Ok(orders);
