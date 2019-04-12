@@ -19,6 +19,7 @@ import { AuthService } from './_services/Auth/Auth.service';
 import { ErrorInterceptorProvider } from './_services/Interceptors/error.interceptor';
 import { AlertifyService } from './_services/Alertify/AlertifyService.service';
 import { AuthGuard } from './_guards/auth.guard';
+import { ProductService } from './_services/Products/Product.service';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { AuthGuard } from './_guards/auth.guard';
       AlertifyService,
       ErrorInterceptorProvider,
       AuthService,
-      AuthGuard
+      AuthGuard,
+      ProductService
    ],
    bootstrap: [
       AppComponent
