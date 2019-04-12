@@ -7,6 +7,7 @@ using OnlineShop.WebApi.Users.Helpers;
 using System.Threading.Tasks;
 using System;
 using OnlineShop.WebApi.Products;
+using OnlineShop.WebApi.Orders;
 
 namespace OnlineShop.WebApi.DataExample
 {
@@ -23,6 +24,8 @@ namespace OnlineShop.WebApi.DataExample
         {
             await SeedUsersDataAsync();
             await SeedProductsDataAsync();
+            await SeedOrdersDataAsync();
+            await SeedOrdersProductAsync();
         }
 
         private async Task SeedUsersDataAsync()
@@ -47,6 +50,29 @@ namespace OnlineShop.WebApi.DataExample
             foreach (var product in products)
             {
                 await _dataAccess.Products.AddAsync(product);
+            }
+
+            await _dataAccess.SaveChangesAsync();
+        }
+
+        private async Task SeedOrdersDataAsync()
+        {
+            var data = File.ReadAllText("DataExample/OrdersData.json");
+            var orders = JsonConvert.DeserializeObject<List<Order>>(data);
+            foreach (var order in orders)
+            {
+                await _dataAccess.Orders.AddAsync(order);
+            }
+
+            await _dataAccess.SaveChangesAsync();
+        }
+
+        private async Task SeedOrdersProductAsync(){
+                        var data = File.ReadAllText("DataExample/OrdersProductData.json");
+            var ordersProducts = JsonConvert.DeserializeObject<List<OrderProduct>>(data);
+            foreach (var ordersProduct in ordersProducts)
+            {
+                await _dataAccess.OrderProducts.AddAsync(ordersProduct);
             }
 
             await _dataAccess.SaveChangesAsync();

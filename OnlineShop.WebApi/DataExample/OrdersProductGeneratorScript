@@ -1,0 +1,7 @@
+[
+  '{{repeat(5)}}',
+  {
+    ProductId: '{{random(1,2,3,4,5)}}',
+    OrderId: '{{random(1,2,3,4,5)}}'
+  }
+]

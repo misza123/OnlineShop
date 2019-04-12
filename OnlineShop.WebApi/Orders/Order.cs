@@ -7,6 +7,7 @@ namespace OnlineShop.WebApi.Orders
     public class Order
     {
         public int Id { get; set; }
+        public int UserId { get; set; }
         public User User { get; set; }
         public virtual ICollection<OrderProduct> OrderProduct { get; set; }
         public DateTime DateOfSubmission { get; set; }
