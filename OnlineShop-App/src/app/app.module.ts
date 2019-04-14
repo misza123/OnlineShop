@@ -16,6 +16,7 @@ import { ProductListComponent } from './products/components/product-list/product
 import { ProductDetailsComponent } from './products/components/product-details/product-details.component';
 import { OrderListComponent } from './orders/components/order-list/order-list.component';
 import { OrderDetailsComponent } from './orders/components/order-details/order-details.component';
+import { OrderCardComponent } from './orders/components/order-list/order-card/order-card.component';
 
 import { AuthService } from './_services/Auth/Auth.service';
 import { ErrorInterceptorProvider } from './_services/Interceptors/error.interceptor';
@@ -33,6 +34,7 @@ import { OrderService } from './_services/Orders/Order.service';
       ProductDetailsComponent,
       ProductListComponent,
       OrderDetailsComponent,
+      OrderCardComponent,
       OrderListComponent,
       BasketComponent,
       MessagesComponent
