@@ -14,6 +14,7 @@ import { BasketComponent } from './basket/basket.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ProductListComponent } from './products/components/product-list/product-list.component';
 import { ProductDetailsComponent } from './products/components/product-details/product-details.component';
+import { ProductCardComponent } from './products/components/product-list/product-card/product-card.component';
 import { OrderListComponent } from './orders/components/order-list/order-list.component';
 import { OrderDetailsComponent } from './orders/components/order-details/order-details.component';
 import { OrderCardComponent } from './orders/components/order-list/order-card/order-card.component';
@@ -33,6 +34,7 @@ import { OrderService } from './_services/Orders/Order.service';
       RegisterComponent,
       ProductDetailsComponent,
       ProductListComponent,
+      ProductCardComponent,
       OrderDetailsComponent,
       OrderCardComponent,
       OrderListComponent,
