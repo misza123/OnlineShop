@@ -9,7 +9,7 @@ using OnlineShop.WebApi.Orders.Dtos;
 namespace OnlineShop.WebApi.Orders
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/auth/[controller]")]
     [ApiController]
     public class OrderController : ControllerBase
     {
