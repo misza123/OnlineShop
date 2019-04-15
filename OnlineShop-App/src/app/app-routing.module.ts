@@ -6,10 +6,12 @@ import { BasketComponent } from './basket/basket.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ProductListComponent } from './products/components/product-list/product-list.component';
 import { OrderListComponent } from './orders/components/order-list/order-list.component';
+import { ProductDetailsComponent } from './products/components/product-details/product-details.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'products', component: ProductListComponent },
+  { path: 'products/:id', component: ProductDetailsComponent },
   { path: 'basket', component: BasketComponent },
   {
       path: '',
