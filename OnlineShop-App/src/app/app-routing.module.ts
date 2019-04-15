@@ -7,11 +7,12 @@ import { MessagesComponent } from './messages/messages.component';
 import { ProductListComponent } from './products/components/product-list/product-list.component';
 import { OrderListComponent } from './orders/components/order-list/order-list.component';
 import { ProductDetailsComponent } from './products/components/product-details/product-details.component';
+import { ProductDetailsResolver } from './products/_resolvers/product-details-resolver';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'products', component: ProductListComponent },
-  { path: 'products/:id', component: ProductDetailsComponent },
+  { path: 'products/:id', component: ProductDetailsComponent, resolve: {product: ProductDetailsResolver} },
   { path: 'basket', component: BasketComponent },
   {
       path: '',

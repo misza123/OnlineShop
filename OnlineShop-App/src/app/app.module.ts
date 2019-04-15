@@ -26,6 +26,7 @@ import { AlertifyService } from './_services/Alertify/AlertifyService.service';
 import { AuthGuard } from './_guards/auth.guard';
 import { ProductService } from './_services/Products/Product.service';
 import { OrderService } from './_services/Orders/Order.service';
+import { ProductDetailsResolver } from './products/_resolvers/product-details-resolver';
 
 export function tokenGetter(){
    return localStorage.getItem('token');
@@ -66,7 +67,8 @@ export function tokenGetter(){
       AuthService,
       AuthGuard,
       ProductService,
-      OrderService
+      OrderService,
+      ProductDetailsResolver
    ],
    bootstrap: [
       AppComponent
