@@ -4,25 +4,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Order } from 'src/app/orders/components/Order';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Authorization': 'Bearer ' + localStorage.getItem('token')
-  })
-}
-
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  baseUrl = environment.apiURL;
+  baseUrl = environment.apiURL + 'auth/';
 
   constructor(private http: HttpClient) { }
 
   getOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(this.baseUrl + 'order', httpOptions);
+    return this.http.get<Order[]>(this.baseUrl + 'order');
   }
 
   getOrder(id: number): Observable<Order> {
-    return this.http.get<Order>(this.baseUrl + 'order/' + id, httpOptions);
+    return this.http.get<Order>(this.baseUrl + 'order/' + id);
   }
 }

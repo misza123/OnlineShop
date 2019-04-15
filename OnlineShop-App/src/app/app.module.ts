@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BsDropdownModule } from 'ngx-bootstrap';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -26,6 +27,10 @@ import { AuthGuard } from './_guards/auth.guard';
 import { ProductService } from './_services/Products/Product.service';
 import { OrderService } from './_services/Orders/Order.service';
 
+export function tokenGetter(){
+   return localStorage.getItem('token');
+}
+
 @NgModule({
    declarations: [
       AppComponent,
@@ -46,7 +51,14 @@ import { OrderService } from './_services/Orders/Order.service';
       HttpClientModule,
       FormsModule,
       AppRoutingModule,
-      BsDropdownModule.forRoot()
+      BsDropdownModule.forRoot(),
+      JwtModule.forRoot({
+         config: {
+            tokenGetter,
+            whitelistedDomains: ['localhost:5000'],
+            blacklistedRoutes: ['localhost:5000/api/auth']
+         }
+      })
    ],
    providers: [
       AlertifyService,
