@@ -23,7 +23,7 @@
           <div class="details-footer">
             <div class="btn-group d-flex"></div>
             <button class="btn btn-success w-25 mr-2">Buy</button>
-            <button class="btn btn-primary w-25">Add to favourite</button>
+            <button *ngIf="loggedIn()" class="btn btn-primary w-25">Add to favourite</button>
           </div>
         </div>
       </div>      
