@@ -10,6 +10,7 @@ import { ProductDetailsComponent } from './products/components/product-details/p
 import { ProductDetailsResolver } from './products/_resolvers/product-details-resolver';
 import { ProductListResolver } from './products/_resolvers/product-list-resolver';
 import { ProfileDetailsComponent } from './users/profile-details/profile-details.component';
+import { UserProfileResolver } from './users/user-profile-resolver';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,7 +24,7 @@ const routes: Routes = [
       children: [
           { path: 'orders', component: OrderListComponent },
           { path: 'messages', component: MessagesComponent },
-          { path: 'profile', component: ProfileDetailsComponent }
+          { path: 'profile', component: ProfileDetailsComponent, resolve: {userProfile: UserProfileResolver} }
       ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' }

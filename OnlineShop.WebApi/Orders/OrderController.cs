@@ -36,5 +36,20 @@ namespace OnlineShop.WebApi.Orders
                 return Ok(orders);
             }
         }
+
+        //todo: drop me - its only for tests
+        // need to implement identity to retrive id and getting only orders of specific user
+        [HttpGet]
+        public async Task<IActionResult> GetOrdersAsync()
+        {
+            using (var uow = _uowFactory.Create())
+            {
+                var orders = await _orderRepository.GetAllAsync();
+                var result = _mapper.Map<ICollection<OrderDTO>>(orders);
+                await uow.CompleteAsync();
+
+                return Ok(orders);
+            }
+        }
     }
 }

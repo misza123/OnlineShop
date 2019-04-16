@@ -8,7 +8,7 @@ using OnlineShop.WebApi.Users.Dtos;
 namespace OnlineShop.WebApi.Users
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/auth/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
