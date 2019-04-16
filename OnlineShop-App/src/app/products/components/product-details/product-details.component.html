@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="card">
-        <img class="card-img-top img-thumbnail" src="{{product.photoURL}}" alt="{{product.name}}">
+          <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
       </div>
     </div>
     <div class="col-sm-8">

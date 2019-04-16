@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { JwtModule } from '@auth0/angular-jwt';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -53,6 +54,7 @@ export function tokenGetter(){
       HttpClientModule,
       FormsModule,
       AppRoutingModule,
+      NgxGalleryModule,
       BsDropdownModule.forRoot(),
       JwtModule.forRoot({
          config: {
@@ -69,7 +71,7 @@ export function tokenGetter(){
       AuthGuard,
       ProductService,
       OrderService,
-      ProductDetailsResolver, 
+      ProductDetailsResolver,
       ProductListResolver
    ],
    bootstrap: [
