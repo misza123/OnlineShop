@@ -8,10 +8,11 @@ import { ProductListComponent } from './products/components/product-list/product
 import { OrderListComponent } from './orders/components/order-list/order-list.component';
 import { ProductDetailsComponent } from './products/components/product-details/product-details.component';
 import { ProductDetailsResolver } from './products/_resolvers/product-details-resolver';
+import { ProductListResolver } from './products/_resolvers/product-list-resolver';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'products', component: ProductListComponent },
+  { path: 'products', component: ProductListComponent, resolve: {products: ProductListResolver} },
   { path: 'products/:id', component: ProductDetailsComponent, resolve: {product: ProductDetailsResolver} },
   { path: 'basket', component: BasketComponent },
   {

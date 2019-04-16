@@ -7,17 +7,17 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()
-export class ProductDetailsResolver implements Resolve<Product> {
+export class ProductListResolver implements Resolve<Product[]> {
 
     constructor(private productService: ProductService,
                 private router: Router,
                 private alertify: AlertifyService) { }
 
-    resolve(route: ActivatedRouteSnapshot): Observable<Product> {
-        return this.productService.getProduct(route.params.id).pipe(
+    resolve(route: ActivatedRouteSnapshot): Observable<Product[]> {
+        return this.productService.getProducts().pipe(
             catchError(error => {
                 this.alertify.error('Problem retrieving data');
-                this.router.navigate(['/products']);
+                this.router.navigate(['/home']);
                 return of(null);
             })
         );
