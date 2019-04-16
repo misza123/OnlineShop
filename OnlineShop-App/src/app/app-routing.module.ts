@@ -9,6 +9,7 @@ import { OrderListComponent } from './orders/components/order-list/order-list.co
 import { ProductDetailsComponent } from './products/components/product-details/product-details.component';
 import { ProductDetailsResolver } from './products/_resolvers/product-details-resolver';
 import { ProductListResolver } from './products/_resolvers/product-list-resolver';
+import { ProfileDetailsComponent } from './users/profile-details/profile-details.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
       children: [
           { path: 'orders', component: OrderListComponent },
           { path: 'messages', component: MessagesComponent },
+          { path: 'profile', component: ProfileDetailsComponent }
       ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' }
