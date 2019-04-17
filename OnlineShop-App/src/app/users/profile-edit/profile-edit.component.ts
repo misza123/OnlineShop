@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserProfile } from '../user-profile';
 import { ActivatedRoute } from '@angular/router';
+import { AlertifyService } from 'src/app/_services/Alertify/AlertifyService.service';
 
 @Component({
   selector: 'app-profile-edit',
@@ -10,13 +11,15 @@ import { ActivatedRoute } from '@angular/router';
 export class ProfileEditComponent implements OnInit {
   userProfile: UserProfile;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {this.userProfile = data.userProfile; });
   }
 
   updateUserProfile() {
+    this.alertify.success('Profile updated successfully');
+    // TODO: go to details
   }
 
 }
