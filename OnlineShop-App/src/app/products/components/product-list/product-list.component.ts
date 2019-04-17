@@ -16,6 +16,6 @@ export class ProductListComponent implements OnInit {
               private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.route.data.subscribe(data => {this.products = data.products;});
+    this.route.data.subscribe(data => {this.products = data.products; });
   }
 }

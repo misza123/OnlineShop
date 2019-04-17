@@ -20,7 +20,7 @@ import { ProductCardComponent } from './products/components/product-list/product
 import { OrderListComponent } from './orders/components/order-list/order-list.component';
 import { OrderDetailsComponent } from './orders/components/order-details/order-details.component';
 import { OrderCardComponent } from './orders/components/order-list/order-card/order-card.component';
-import { ProfileDetailsComponent } from './users/profile-details/profile-details.component';
+import { ProfileEditComponent } from './users/profile-edit/profile-edit.component';
 
 import { AuthService } from './_services/Auth/Auth.service';
 import { ErrorInterceptorProvider } from './_services/Interceptors/error.interceptor';
@@ -31,9 +31,9 @@ import { OrderService } from './_services/Orders/Order.service';
 import { ProductDetailsResolver } from './products/_resolvers/product-details-resolver';
 import { ProductListResolver } from './products/_resolvers/product-list-resolver';
 import { UserService } from './users/user.service';
-import { UserProfileResolver } from './users/user-profile-resolver';
+import { UserProfileEditResolver } from './users/user-profile-edit-resolver';
 
-export function tokenGetter(){
+export function tokenGetter() {
    return localStorage.getItem('token');
 }
 
@@ -51,7 +51,7 @@ export function tokenGetter(){
       OrderListComponent,
       BasketComponent,
       MessagesComponent,
-      ProfileDetailsComponent
+      ProfileEditComponent
    ],
    imports: [
       BrowserModule,
@@ -78,7 +78,7 @@ export function tokenGetter(){
       ProductDetailsResolver,
       ProductListResolver,
       UserService,
-      UserProfileResolver
+      UserProfileEditResolver
    ],
    bootstrap: [
       AppComponent
