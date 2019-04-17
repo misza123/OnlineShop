@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from 'ngx-gallery';
 
@@ -21,6 +21,7 @@ import { OrderListComponent } from './orders/components/order-list/order-list.co
 import { OrderDetailsComponent } from './orders/components/order-details/order-details.component';
 import { OrderCardComponent } from './orders/components/order-list/order-card/order-card.component';
 import { ProfileEditComponent } from './users/profile-edit/profile-edit.component';
+import { AddressEditComponent } from './users/address-edit/address-edit.component';
 
 import { AuthService } from './_services/Auth/Auth.service';
 import { ErrorInterceptorProvider } from './_services/Interceptors/error.interceptor';
@@ -51,7 +52,8 @@ export function tokenGetter() {
       OrderListComponent,
       BasketComponent,
       MessagesComponent,
-      ProfileEditComponent
+      ProfileEditComponent,
+      AddressEditComponent
    ],
    imports: [
       BrowserModule,
@@ -60,6 +62,7 @@ export function tokenGetter() {
       AppRoutingModule,
       NgxGalleryModule,
       BsDropdownModule.forRoot(),
+      TabsModule.forRoot(),
       JwtModule.forRoot({
          config: {
             tokenGetter,

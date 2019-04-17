@@ -39,7 +39,7 @@ namespace OnlineShop.WebApi.Users
 
         public async Task<User> GetDetailAsync(Expression<Func<User, bool>> predicate)
         {
-            return await _dataContext.Users.Where(predicate).SingleOrDefaultAsync();
+            return await _dataContext.Users.Include(x => x.Addresses).Where(predicate).SingleOrDefaultAsync();
         }
     }
 }

@@ -41,7 +41,8 @@ namespace OnlineShop.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>();
+
+            // services.AddDbContext<DataContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                     .AddJsonOptions(opt => {
                         opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
@@ -93,7 +94,7 @@ namespace OnlineShop.WebApi
                 });
             }
 
-            //  seeder.SeedDataAsync().Wait(); //should be executed only for development
+            //   seeder.SeedDataAsync().Wait(); //should be executed only for development
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthentication();
             // app.UseHttpsRedirection();
