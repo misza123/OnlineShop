@@ -12,22 +12,28 @@ import { ProductListResolver } from './products/_resolvers/product-list-resolver
 import { ProfileDetailsComponent } from './users/profile-details/profile-details.component';
 import { UserProfileDetailsResolver } from './users/user-profile-details-resolver';
 import { ProfileEditComponent } from './users/profile-edit/profile-edit.component';
+import { prependListener } from 'cluster';
+import { PreventUnsavedChanges } from './users/_guards/prevent-unsaved-changes.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'products', component: ProductListComponent, resolve: {products: ProductListResolver} },
-  { path: 'products/:id', component: ProductDetailsComponent, resolve: {product: ProductDetailsResolver} },
+  { path: 'products', component: ProductListComponent, resolve: { products: ProductListResolver } },
+  { path: 'products/:id', component: ProductDetailsComponent, resolve: { product: ProductDetailsResolver } },
   { path: 'basket', component: BasketComponent },
   {
-      path: '',
-      runGuardsAndResolvers: 'always',
-      canActivate: [AuthGuard],
-      children: [
-          { path: 'orders', component: OrderListComponent },
-          { path: 'messages', component: MessagesComponent },
-          { path: 'profile', component: ProfileDetailsComponent, resolve: {userProfile: UserProfileDetailsResolver} },
-          { path: 'profile/edit', component: ProfileEditComponent, resolve: {userProfile: UserProfileDetailsResolver} },
-      ]
+    path: '',
+    runGuardsAndResolvers: 'always',
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'orders', component: OrderListComponent },
+      { path: 'messages', component: MessagesComponent },
+      { path: 'profile', component: ProfileDetailsComponent, resolve: { userProfile: UserProfileDetailsResolver } },
+      {
+        path: 'profile/edit', component: ProfileEditComponent,
+        resolve: { userProfile: UserProfileDetailsResolver },
+        canDeactivate: [PreventUnsavedChanges]
+      },
+    ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
