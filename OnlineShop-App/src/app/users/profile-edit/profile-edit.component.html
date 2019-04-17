@@ -6,9 +6,9 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row mt-2">
     <div class="col-sm-12">
-      <form #editForm="ngForm" (ngSubmit)="updateUserProfile()">
+      <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUserProfile()">
         <div class="card-header">
           <h5>Personal data:</h5>
         </div>
@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="card-fotter">
-            <button [disabled]="!editForm.dirty" class="btn btn-success"><i class="fa fa-save"></i> save</button>
+            <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success"><i class="fa fa-save"></i> save</button>
         </div>
       </form>
     </div>
