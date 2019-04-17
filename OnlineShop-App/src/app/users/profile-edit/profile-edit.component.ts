@@ -16,4 +16,7 @@ export class ProfileEditComponent implements OnInit {
     this.route.data.subscribe(data => {this.userProfile = data.userProfile; });
   }
 
+  updateUserProfile() {
+  }
+
 }

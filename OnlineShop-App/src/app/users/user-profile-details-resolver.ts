@@ -8,7 +8,7 @@ import { UserService } from './user.service';
 import { AuthService } from '../_services/Auth/Auth.service';
 
 @Injectable()
-export class UserProfileEditResolver implements Resolve<UserProfile> {
+export class UserProfileDetailsResolver implements Resolve<UserProfile> {
 
     constructor(private userService: UserService,
                 private router: Router,

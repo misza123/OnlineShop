@@ -1,10 +1,20 @@
 <div>
-  <p><strong>Name: </strong>{{address.name}}</p>
-  <p><strong>Street:</strong> {{address.street}} </p>
-  <p><strong>Building number:</strong> {{address.buildingNumber}} </p>
-  <p><strong>Flat number:</strong> {{address.flatNumber}} </p>
-  <p><strong>City:</strong> {{address.city}} </p>
-  <p><strong>Postal code:</strong> {{address.postalCode}} </p>
-  <p><strong>Country:</strong> {{address.country}} </p>
-  <button class="btn btn-danger"><i class="fa fa-trash"></i> Remove</button>
+    <strong>Name: </strong>
+    <input class="form-control" type="text" name="name" [(ngModel)]="address.name">
+    <strong>Street: </strong>
+    <input class="form-control" type="text" name="street" [(ngModel)]="address.street">
+    <strong>Building number: </strong>
+    <input class="form-control" type="text" name="buildingNumber" [(ngModel)]="address.buildingNumber">
+    <strong>Flat number: </strong>
+    <input class="form-control" type="text" name="flatNumber" [(ngModel)]="address.flatNumber">
+    <strong>City: </strong>
+    <input class="form-control" type="text" name="city" [(ngModel)]="address.city">
+    <strong>Postal code: </strong>
+    <input class="form-control" type="text" name="postalCode" [(ngModel)]="address.postalCode">
+    <strong>Country: </strong>
+    <input class="form-control" type="text" name="country" [(ngModel)]="address.country">
+    <div class="custom-control custom-switch">
+      <input type="checkbox" class="custom-control-input" [(ngModel)]="address.isMain" id="customSwitch2">
+      <label class="custom-control-label" for="customSwitch2">Is main address</label>
+    </div>
 </div>

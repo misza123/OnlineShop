@@ -1,28 +1,44 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-sm-12">
-      <div class="card-header">
+      <div *ngIf="editForm.dirty"class="alert alert-warning">
+        <strong>Information:</strong> You have made changes. Any unsaved changes will be lost!
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <form #editForm="ngForm" (ngSubmit)="updateUserProfile()">
+        <div class="card-header">
           <h5>Personal data:</h5>
-      </div>
-      <div class="card-body">
-        <div class="section-user-data">
-          <p><strong>Name:</strong> {{userProfile.name}}</p>            
-          <p><strong>Surname:</strong> {{userProfile.surname}}</p>        
         </div>
-      </div>
-      <div class="card-header">
-          <h5>Addresses:</h5>
-      </div>
-      <div class="card-body">
-        <div class="section-addresses">
-          <button class="btn btn-success"><i class="fa fa-plus"></i> Add new</button>
-          <div class="tab-panel mt-4">
-            <tabset class="member-tabset">
-              <tab *ngFor="let address of userProfile.addresses" heading="{{address.name}}"> <app-address-edit [address]="address"></app-address-edit></tab>
-            </tabset>
+        <div class="card-body">
+          <div class="section-user-data">
+            <strong>Name: </strong>
+            <input class="form-control" type="text" name="name" [(ngModel)]="userProfile.name">
+            <strong>Surname: </strong>
+            <input class="form-control" type="text" name="surname" [(ngModel)]="userProfile.surname">
           </div>
         </div>
-      </div>
+        <div class="card-header">
+          <h5>Addresses:</h5>
+        </div>
+        <div class="card-body">
+          <div class="section-addresses">
+            <button class="btn btn-success"><i class="fa fa-plus"></i> Add new</button>
+            <div class="tab-panel mt-4">
+              <tabset class="member-tabset">
+                <tab *ngFor="let address of userProfile.addresses" heading="{{address.name}}">
+                  <app-address-edit [address]="address"></app-address-edit>
+                </tab>
+              </tabset>
+            </div>
+          </div>
+        </div>
+        <div class="card-fotter">
+            <button [disabled]="!editForm.dirty" class="btn btn-success"><i class="fa fa-save"></i> save</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
