@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -32,6 +33,25 @@ namespace OnlineShop.WebApi.Users
                 var user = await _userRepository.GetDetailAsync(x => x.Id == id);
                 var result = _mapper.Map<UserDetailsReturnDTO>(user);
                 return Ok(user);
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUserProfile(int id, UpdateUserDTO updateUserDTO)
+        {
+            using (var uow = _uowFactory.Create())
+            {
+                if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                {
+                    return Unauthorized();
+                }
+
+                var user = await _userRepository.GetDetailAsync(x => x.Id == id);
+                _mapper.Map(updateUserDTO, user);
+    
+                await uow.SaveChangesAsync();
+                await uow.CompleteAsync();
+                return Ok();
             }
         }
     }

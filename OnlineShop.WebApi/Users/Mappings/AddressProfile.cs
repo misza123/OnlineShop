@@ -8,6 +8,8 @@ namespace OnlineShop.WebApi.Users.Mappings
         public AddressProfile()
         {
             CreateMap<Address, AddressReturnDTO>();
+
+            CreateMap<UpdateAddressDTO, Address>();
         }
     }
 }
