@@ -45,12 +45,12 @@ export class ProductDetailsComponent implements OnInit {
 
   getImages() {
     const imageUrls = [];
-    for (let i = 0; i < this.product.photos.length; i++) {
+    for (const photo of this.product.photos) {
       imageUrls.push({
-        small: this.product.photos[i].url,
-        medium: this.product.photos[i].url,
-        big: this.product.photos[i].url,
-        description: this.product.photos[i].description
+        small: photo.url,
+        medium: photo.url,
+        big: photo.url,
+        description: photo.description
       });
     }
     return imageUrls;
