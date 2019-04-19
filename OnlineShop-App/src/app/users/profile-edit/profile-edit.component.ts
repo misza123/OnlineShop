@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserProfile } from '../user-profile';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertifyService } from 'src/app/_services/Alertify/AlertifyService.service';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../user.service';
@@ -16,6 +16,7 @@ export class ProfileEditComponent implements OnInit {
   userProfile: UserProfile;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private alertify: AlertifyService,
               private userService: UserService,
               private authService: AuthService) { }
@@ -28,7 +29,7 @@ export class ProfileEditComponent implements OnInit {
     this.userService.updateUser(this.authService.decodedToken.nameid, this.userProfile)
       .subscribe(next => {
         this.alertify.success('Profile updated successfully');
-        // TODO: go to details
+        this.router.navigate(['/profile']);
       },
         error => { this.alertify.error(error); });
   }
