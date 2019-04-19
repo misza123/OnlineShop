@@ -24,6 +24,7 @@ using OnlineShop.WebApi.DataAccess;
 using OnlineShop.WebApi.DataExample;
 using OnlineShop.WebApi.Helpers;
 using OnlineShop.WebApi.IoC;
+using OnlineShop.WebApi.Settings;
 using OnlineShop.WebApi.Users;
 using OnlineShop.WebApi.Users.Helpers;
 
@@ -48,6 +49,7 @@ namespace OnlineShop.WebApi
                         opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                     });
             services.AddCors();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(opt =>
                     {
