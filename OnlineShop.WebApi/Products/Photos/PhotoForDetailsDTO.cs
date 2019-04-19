@@ -1,4 +1,4 @@
-namespace OnlineShop.WebApi.Products.Dtos
+namespace OnlineShop.WebApi.Products.Photos
 {
     public class PhotoForDetailsDTO
     {

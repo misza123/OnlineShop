@@ -1,7 +1,6 @@
 using AutoMapper;
-using OnlineShop.WebApi.Products.Dtos;
 
-namespace OnlineShop.WebApi.Products.Mappings
+namespace OnlineShop.WebApi.Products.Photos
 {
     public class PhotoProfile : Profile
     {

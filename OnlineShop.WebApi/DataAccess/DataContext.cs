@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using OnlineShop.WebApi.Orders;
 using OnlineShop.WebApi.Products;
+using OnlineShop.WebApi.Products.Photos;
 using OnlineShop.WebApi.Users;
 
 namespace OnlineShop.WebApi.DataAccess

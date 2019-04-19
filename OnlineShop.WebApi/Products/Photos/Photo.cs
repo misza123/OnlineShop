@@ -1,4 +1,4 @@
-namespace OnlineShop.WebApi.Products
+namespace OnlineShop.WebApi.Products.Photos
 {
     public class Photo
     {

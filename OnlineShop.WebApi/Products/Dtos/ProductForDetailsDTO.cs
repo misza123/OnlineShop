@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using OnlineShop.WebApi.Products.Photos;
 
 namespace OnlineShop.WebApi.Products.Dtos
 {
