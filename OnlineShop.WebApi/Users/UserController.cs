@@ -48,7 +48,6 @@ namespace OnlineShop.WebApi.Users
 
                 var user = await _userRepository.GetDetailAsync(x => x.Id == id);
                 _mapper.Map(updateUserDTO, user);
-                _mapper.Map(updateUserDTO.Addresses, user.Addresses); //TODO: ef update also address id when address entity updated
     
                 await uow.SaveChangesAsync();
                 await uow.CompleteAsync();
