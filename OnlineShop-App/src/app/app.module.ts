@@ -17,6 +17,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { ProductListComponent } from './products/components/product-list/product-list.component';
 import { ProductDetailsComponent } from './products/components/product-details/product-details.component';
 import { ProductCardComponent } from './products/components/product-list/product-card/product-card.component';
+import { ProductEditComponent } from './products/components/product-edit/product-edit.component';
 import { OrderListComponent } from './orders/components/order-list/order-list.component';
 import { OrderDetailsComponent } from './orders/components/order-details/order-details.component';
 import { OrderCardComponent } from './orders/components/order-list/order-card/order-card.component';
@@ -50,6 +51,7 @@ export function tokenGetter() {
       ProductDetailsComponent,
       ProductListComponent,
       ProductCardComponent,
+      ProductEditComponent,
       OrderDetailsComponent,
       OrderCardComponent,
       OrderListComponent,

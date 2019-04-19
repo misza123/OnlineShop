@@ -13,11 +13,13 @@ import { ProfileDetailsComponent } from './users/profile-details/profile-details
 import { UserProfileDetailsResolver } from './users/user-profile-details-resolver';
 import { ProfileEditComponent } from './users/profile-edit/profile-edit.component';
 import { PreventUnsavedChanges } from './users/_guards/prevent-unsaved-changes.guard';
+import { ProductEditComponent } from './products/components/product-edit/product-edit.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'products', component: ProductListComponent, resolve: { products: ProductListResolver } },
   { path: 'products/:id', component: ProductDetailsComponent, resolve: { product: ProductDetailsResolver } },
+  { path: 'products/:id/edit', component: ProductEditComponent, },
   { path: 'basket', component: BasketComponent },
   {
     path: '',
