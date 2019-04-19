@@ -18,4 +18,7 @@ export class UserService {
     return this.http.get<UserProfile>(this.baseUrl + 'user/' + id);
   }
 
+  updateUser(id: number, user: UserProfile) {
+    return this.http.put(this.baseUrl + 'user/' + id, user);
+  }
 }
