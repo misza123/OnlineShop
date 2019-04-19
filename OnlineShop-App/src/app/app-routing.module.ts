@@ -12,7 +12,6 @@ import { ProductListResolver } from './products/_resolvers/product-list-resolver
 import { ProfileDetailsComponent } from './users/profile-details/profile-details.component';
 import { UserProfileDetailsResolver } from './users/user-profile-details-resolver';
 import { ProfileEditComponent } from './users/profile-edit/profile-edit.component';
-import { prependListener } from 'cluster';
 import { PreventUnsavedChanges } from './users/_guards/prevent-unsaved-changes.guard';
 
 const routes: Routes = [
