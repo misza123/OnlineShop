@@ -48,7 +48,6 @@ namespace OnlineShop.WebApi
                         opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                     });
             services.AddCors();
-            services.AddAutoMapper();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(opt =>
                     {
@@ -63,6 +62,7 @@ namespace OnlineShop.WebApi
             
             var containerBuilder = new ContainerBuilder();
             containerBuilder.RegisterModule<MainModule>();
+            containerBuilder.RegisterModule<AutoMapperModule>();
             containerBuilder.Populate(services);
             var container = containerBuilder.Build();
 
