@@ -13,8 +13,6 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUser(id: number): Observable<UserProfile> {
-    // todo need to implement identity or retriving id from jwt token
-    id = 1;
     return this.http.get<UserProfile>(this.baseUrl + 'user/' + id);
   }
 
