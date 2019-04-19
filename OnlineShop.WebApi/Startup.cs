@@ -42,7 +42,8 @@ namespace OnlineShop.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-
+            // TODO: need to change database control to SSDT management
+            // in existing implementation, there is a need to uncomment below line if case of using like 'dotnet ef ...'
             // services.AddDbContext<DataContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                     .AddJsonOptions(opt => {
