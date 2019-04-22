@@ -2,6 +2,7 @@ using Autofac;
 using OnlineShop.WebApi.DataAccess;
 using OnlineShop.WebApi.DataExample;
 using OnlineShop.WebApi.Products;
+using OnlineShop.WebApi.Products.Photos;
 using OnlineShop.WebApi.Users;
 
 namespace OnlineShop.WebApi.IoC
@@ -17,6 +18,7 @@ namespace OnlineShop.WebApi.IoC
             builder.RegisterType<TransactionScopeUnitOfWorkFactory>().As<IUnitOfWorkFactory>().InstancePerLifetimeScope();
             builder.RegisterType<UserRepository>().As<IRepository<User>>().InstancePerLifetimeScope();
             builder.RegisterType<ProductRepository>().As<IRepository<Product>>().InstancePerLifetimeScope();
+            builder.RegisterType<CloudinaryStoreService>().As<IPhotoStoreService>().SingleInstance();
 
             builder.RegisterGeneric(typeof(GenericRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
         }
