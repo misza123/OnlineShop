@@ -25,6 +25,7 @@ import { ProfileEditComponent } from './users/profile-edit/profile-edit.componen
 import { AddressEditComponent } from './users/address-edit/address-edit.component';
 import { AddressDetailsComponent } from './users/address-details/address-details.component';
 import { ProfileDetailsComponent } from './users/profile-details/profile-details.component';
+import { PhotoEditorComponent } from './products/photos/photo-editor/photo-editor.component';
 
 import { AuthService } from './_services/Auth/Auth.service';
 import { ErrorInterceptorProvider } from './_services/Interceptors/error.interceptor';
@@ -60,7 +61,8 @@ export function tokenGetter() {
       ProfileEditComponent,
       ProfileDetailsComponent,
       AddressEditComponent,
-      AddressDetailsComponent
+      AddressDetailsComponent,
+      PhotoEditorComponent
    ],
    imports: [
       BrowserModule,
