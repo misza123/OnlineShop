@@ -1,5 +1,7 @@
+using System;
 using System.IO;
 using System.Threading.Tasks;
+using AutoMapper;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.Extensions.Options;
@@ -11,8 +13,9 @@ namespace OnlineShop.WebApi.Products.Photos
     public class CloudinaryStoreService : IPhotoStoreService
     {
         private readonly Cloudinary _cloudinary;
+        private readonly IMapper _mapper;
 
-        public CloudinaryStoreService(IOptions<CloudinarySettings> cloudinaryConfig)
+        public CloudinaryStoreService(IOptions<CloudinarySettings> cloudinaryConfig, IMapper mapper)
         {
             var cloudinaryAccount = new Account(
                 cloudinaryConfig.Value.CloudName,
@@ -20,7 +23,10 @@ namespace OnlineShop.WebApi.Products.Photos
                 cloudinaryConfig.Value.ApiSecret
             );
             _cloudinary = new Cloudinary(cloudinaryAccount);
+
+            _mapper = mapper;
         }
+
         public UploadPhotoResult AddPhotoToStore(string fileName, Stream stream)
         {
             var uploadParams = new ImageUploadParams()
@@ -29,9 +35,13 @@ namespace OnlineShop.WebApi.Products.Photos
                 Transformation = new Transformation().Width(500).Height(500).Crop("fill")
             };
 
-            _cloudinary.Upload(uploadParams);
-
-            var uploadResult = new UploadPhotoResult();
+            var result = _cloudinary.Upload(uploadParams);
+            if (result.Error != null)
+            {
+                throw new InvalidOperationException(result.Error.Message);
+            }
+            
+            var uploadResult = _mapper.Map<UploadPhotoResult>(result);
 
             return uploadResult;
         }
