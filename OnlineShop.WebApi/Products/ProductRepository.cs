@@ -22,6 +22,11 @@ namespace OnlineShop.WebApi.Products
             await _dataContext.Products.AddAsync(product);
         }
 
+        public async Task<bool> AnyAsync(Expression<Func<Product, bool>> predicate)
+        {
+            return await _dataContext.Products.AnyAsync(predicate);
+        }
+        
         public void Delete(Product entity)
         {
             _dataContext.Products.Remove(entity);

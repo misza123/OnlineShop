@@ -11,8 +11,8 @@ namespace OnlineShop.WebApi.DataAccess
     {
         private DataContext _dataContext;
         public GenericRepository(DataContext dataContext)
-        {  
-            _dataContext = dataContext;  
+        {
+            _dataContext = dataContext;
         }
         public async Task AddAsync(T entity)
         {
@@ -37,6 +37,11 @@ namespace OnlineShop.WebApi.DataAccess
         public async Task<ICollection<T>> GetAllAsync(Expression<Func<T, bool>> predicate)
         {
             return await _dataContext.Set<T>().Where(predicate).ToListAsync();
+        }
+
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _dataContext.Set<T>().AnyAsync(predicate);
         }
     }
 }

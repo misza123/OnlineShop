@@ -22,6 +22,11 @@ namespace OnlineShop.WebApi.Users
             await _dataContext.Users.AddAsync(entity);
         }
 
+        public async Task<bool> AnyAsync(Expression<Func<User, bool>> predicate)
+        {
+            return await _dataContext.Users.AnyAsync(predicate);
+        }
+
         public void Delete(User entity)
         {
             _dataContext.Users.Remove(entity);

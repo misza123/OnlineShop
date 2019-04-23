@@ -12,5 +12,6 @@ namespace OnlineShop.WebApi.DataAccess
         Task<T> GetDetailAsync(Expression<Func<T, bool>> predicate);
         Task<ICollection<T>> GetAllAsync();
         Task<ICollection<T>> GetAllAsync(Expression<Func<T, bool>> predicate);
+        Task<bool> AnyAsync(Expression<Func<T, bool>> predicate);
     }
 }
