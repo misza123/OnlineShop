@@ -18,16 +18,30 @@ namespace OnlineShop.WebApi.Products.Photos
         private readonly IMapper _mapper;
         private readonly IUnitOfWorkFactory _uowFactory;
         private readonly IPhotoService _photoService;
+        private readonly IRepository<Photo> _photoRepository;
 
-        public PhotoController(IMapper mapper, IUnitOfWorkFactory uowFactory, IPhotoService photoService)
+        public PhotoController(IMapper mapper, IUnitOfWorkFactory uowFactory, IPhotoService photoService, IRepository<Photo> photoRepository)
         {
             _mapper = mapper;
             _uowFactory = uowFactory;
             _photoService = photoService;
+            _photoRepository = photoRepository;
+        }
+
+        [HttpGet("{photoId}", Name = "GetPhoto")]
+        public async Task<IActionResult> GetPhoto(int photoId)
+        {
+            using (var uow = _uowFactory.Create())
+            {
+                var photo = await _photoRepository.GetDetailAsync(x => x.Id == photoId);
+                var result = _mapper.Map<PhotoForDetailsDTO>(photo);
+
+                return Ok(result);
+            }
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddPhotoForProductAsync(int productId, AddPhotoForProductDTO dto)
+        public async Task<IActionResult> AddPhotoForProductAsync(int productId, [FromForm] AddPhotoForProductDTO dto)
         {
             using (var uow = _uowFactory.Create())
             {
@@ -36,8 +50,11 @@ namespace OnlineShop.WebApi.Products.Photos
 
                 var domainPhoto = _mapper.Map<Photo>(dto);
                 await _photoService.AddPhotoAsync(dto.File, domainPhoto);
+
                 await uow.CompleteAsync();
-                return Ok();
+
+                var result = _mapper.Map<PhotoForDetailsDTO>(domainPhoto);
+                return CreatedAtRoute("GetPhoto", new {photoId = domainPhoto.Id}, result);
             }
         }
     }
