@@ -19,6 +19,7 @@ namespace OnlineShop.WebApi.IoC
             builder.RegisterType<UserRepository>().As<IRepository<User>>().InstancePerLifetimeScope();
             builder.RegisterType<ProductRepository>().As<IRepository<Product>>().InstancePerLifetimeScope();
             builder.RegisterType<CloudinaryStoreService>().As<IPhotoStoreService>().SingleInstance();
+            builder.RegisterType<PhotoService>().As<IPhotoService>().SingleInstance();
 
             builder.RegisterGeneric(typeof(GenericRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
         }
