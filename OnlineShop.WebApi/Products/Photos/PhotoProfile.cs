@@ -1,4 +1,6 @@
 using AutoMapper;
+using OnlineShop.WebApi.Products.Photos.Dtos;
+using OnlineShop.WebApi.Products.Photos.PhotoStores;
 
 namespace OnlineShop.WebApi.Products.Photos
 {
@@ -7,6 +9,10 @@ namespace OnlineShop.WebApi.Products.Photos
         public PhotoProfile()
         {
             CreateMap<Photo, PhotoForDetailsDTO>();
+            
+            CreateMap<AddPhotoForProductDTO, Photo>();
+            
+            CreateMap<UploadPhotoResult, Photo>();
         }
     }
 }

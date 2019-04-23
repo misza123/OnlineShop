@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.Extensions.Options;
+using OnlineShop.WebApi.Products.Photos.PhotoStores;
 using OnlineShop.WebApi.Settings;
 
 namespace OnlineShop.WebApi.Products.Photos
@@ -20,15 +21,19 @@ namespace OnlineShop.WebApi.Products.Photos
             );
             _cloudinary = new Cloudinary(cloudinaryAccount);
         }
-
-        public void AddPhotoToStoreAsync(string fileName, Stream stream)
+        public UploadPhotoResult AddPhotoToStore(string fileName, Stream stream)
         {
             var uploadParams = new ImageUploadParams()
             {
-                File = new FileDescription(fileName, stream)
+                File = new FileDescription(fileName, stream),
+                Transformation = new Transformation().Width(500).Height(500).Crop("fill")
             };
-            
+
             _cloudinary.Upload(uploadParams);
+
+            var uploadResult = new UploadPhotoResult();
+
+            return uploadResult;
         }
     }
 }

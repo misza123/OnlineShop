@@ -1,10 +1,11 @@
 using System.IO;
 using System.Threading.Tasks;
+using OnlineShop.WebApi.Products.Photos.PhotoStores;
 
 namespace OnlineShop.WebApi.Products.Photos
 {
     public interface IPhotoStoreService
     {
-        void AddPhotoToStoreAsync(string fileName, Stream stream);
+        UploadPhotoResult AddPhotoToStore(string fileName, Stream stream);
     }
 }
