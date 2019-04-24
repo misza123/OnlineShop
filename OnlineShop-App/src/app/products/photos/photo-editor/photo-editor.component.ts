@@ -14,7 +14,7 @@ export class PhotoEditorComponent implements OnInit {
   @Input() productId: number;
   uploader: FileUploader;
   hasBaseDropZoneOver = false;
-  baseUrl = environment.apiURL;
+  baseUrl = environment.apiURL + 'auth/';
 
   constructor() { }
 
@@ -36,5 +36,7 @@ export class PhotoEditorComponent implements OnInit {
       autoUpload: false,
       maxFileSize: 10 * 1024 * 1024
     });
+
+    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; }
   }
 }
