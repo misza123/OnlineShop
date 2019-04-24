@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'products', component: ProductListComponent, resolve: { products: ProductListResolver } },
   { path: 'products/:id', component: ProductDetailsComponent, resolve: { product: ProductDetailsResolver } },
-  { path: 'products/:id/edit', component: ProductEditComponent, },
+  { path: 'products/:id/edit', component: ProductEditComponent, resolve: { product: ProductDetailsResolver } },
   { path: 'basket', component: BasketComponent },
   {
     path: '',
