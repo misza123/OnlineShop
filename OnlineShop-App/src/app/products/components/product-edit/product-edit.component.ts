@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../../product';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProductService } from 'src/app/_services/Products/Product.service';
+import { AlertifyService } from 'src/app/_services/Alertify/AlertifyService.service';
 
 @Component({
   selector: 'app-product-edit',
@@ -11,10 +13,21 @@ export class ProductEditComponent implements OnInit {
   product: Product;
   // TODO: get product from api by id.
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private alertify: AlertifyService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private productService: ProductService) { }
 
   ngOnInit() {
-    this.route.data.subscribe(data => {this.product = data.product; });
+    this.route.data.subscribe(data => { this.product = data.product; });
   }
 
+  updateProduct() {
+    this.productService.updateProduct(this.product)
+      .subscribe(next => {
+        this.alertify.success('Profile updated successfully');
+        this.router.navigate(['/profile']);
+      },
+        error => { this.alertify.error(error); });
+  }
 }

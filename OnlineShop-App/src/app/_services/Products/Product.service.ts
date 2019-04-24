@@ -8,14 +8,19 @@ import { Product } from 'src/app/products/product';
   providedIn: 'root'
 })
 export class ProductService {
-  baseUrl = environment.apiURL;
+  baseUrl = environment.apiURL + 'product/';
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.baseUrl + 'product');
+    return this.http.get<Product[]>(this.baseUrl);
   }
 
   getProduct(id: number): Observable<Product> {
-    return this.http.get<Product>(this.baseUrl + 'product/' + id);
+    return this.http.get<Product>(this.baseUrl + id);
+  }
+
+  updateProduct(product: Product) {
+    // TODO: implementation at web api
+    return this.http.put(this.baseUrl, product);
   }
 }

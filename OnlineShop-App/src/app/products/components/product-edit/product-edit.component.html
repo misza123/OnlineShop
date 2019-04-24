@@ -1,7 +1,26 @@
-<p>
-  product-edit works!
-</p>
-<div>
-  <p>Edit photos:</p>
-  <app-photo-editor [photos]="product.photos"></app-photo-editor>
+<div class="container mt-4">
+  <h3>
+    Edited product: <i>{{product.name}}</i>
+  </h3>
+  <div>
+    <tabset>
+      <tab heading="Data">
+        <form #ediiForm="ngForm" id="editForm">
+          <strong>Name: </strong>
+          <input class="form-control" type="text" name="name" [(ngModel)]="product.name">
+          <strong>Description: </strong>
+          <input class="form-control" type="text" name="description" [(ngModel)]="product.description">
+          <strong>Price: </strong>
+          <input class="form-control" type="text" name="price" [(ngModel)]="product.price">
+          <button class="btn btn-success mt-2" click="updateProduct()"><i class="fa fa-save"></i> Save</button>
+        </form>
+      </tab>
+      <tab heading="Photos">
+        <div class="mt-4 ml-4 mr-4">
+          <button class="btn btn-success mb-3"><i class="fa fa-plus"></i> Add</button>
+          <app-photo-editor [photos]="product.photos"></app-photo-editor>
+        </div>
+      </tab>
+    </tabset>
+  </div>
 </div>
