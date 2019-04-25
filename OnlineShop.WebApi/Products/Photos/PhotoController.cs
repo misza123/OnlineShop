@@ -49,6 +49,7 @@ namespace OnlineShop.WebApi.Products.Photos
                 // var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
                 var domainPhoto = _mapper.Map<Photo>(dto);
+                domainPhoto.ProductId = productId;
                 await _photoService.AddPhotoAsync(dto.File, domainPhoto);
 
                 await uow.CompleteAsync();
