@@ -9,9 +9,12 @@ namespace OnlineShop.WebApi.Products.Photos
         public PhotoProfile()
         {
             CreateMap<Photo, PhotoForDetailsDTO>();
-            
+
             CreateMap<AddPhotoForProductDTO, Photo>();
-            
+
+            CreateMap<UpdatePhotoDTO, Photo>()
+            .ForMember(x => x.Id, opt => opt.Ignore());
+
             CreateMap<UploadPhotoResult, Photo>();
         }
     }

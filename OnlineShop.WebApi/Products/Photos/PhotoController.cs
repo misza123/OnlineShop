@@ -29,7 +29,7 @@ namespace OnlineShop.WebApi.Products.Photos
         }
 
         [HttpGet("{photoId}", Name = "GetPhoto")]
-        public async Task<IActionResult> GetPhoto(int photoId)
+        public async Task<IActionResult> GetPhotoAsync(int photoId)
         {
             using (var uow = _uowFactory.Create())
             {
@@ -56,6 +56,19 @@ namespace OnlineShop.WebApi.Products.Photos
 
                 var result = _mapper.Map<PhotoForDetailsDTO>(domainPhoto);
                 return CreatedAtRoute("GetPhoto", new {photoId = domainPhoto.Id}, result);
+            }
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdatePhotoAsync(int productId, UpdatePhotoDTO dto)
+        {
+            using (var uow = _uowFactory.Create())
+            {
+                // TODO: needs to check if user is admin
+                await _photoService.UpdatePhotoAsync(productId, dto);
+    
+                await uow.CompleteAsync();
+                return NoContent();
             }
         }
     }
