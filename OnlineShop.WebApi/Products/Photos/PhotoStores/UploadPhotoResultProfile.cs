@@ -7,7 +7,8 @@ namespace OnlineShop.WebApi.Products.Photos.PhotoStores
     {
         public UploadPhotoResultProfile()
         {
-            CreateMap<UploadResult, UploadPhotoResult>();
+            CreateMap<UploadResult, UploadPhotoResult>()
+            .ForMember(dest => dest.Url, opt => opt.MapFrom(x => x.Uri));
         }
     }
 }
