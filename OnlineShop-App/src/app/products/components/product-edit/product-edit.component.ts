@@ -11,6 +11,7 @@ import { AlertifyService } from 'src/app/_services/Alertify/AlertifyService.serv
 })
 export class ProductEditComponent implements OnInit {
   product: Product;
+  mainPhotoUrl: string;
   // TODO: get product from api by id.
 
   constructor(private alertify: AlertifyService,
@@ -20,6 +21,7 @@ export class ProductEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(data => { this.product = data.product; });
+    this.setMainPhoto();
   }
 
   updateProduct() {
@@ -29,5 +31,9 @@ export class ProductEditComponent implements OnInit {
         this.router.navigate(['/profile']);
       },
         error => { this.alertify.error(error); });
+  }
+
+  setMainPhoto() {
+    this.mainPhotoUrl = this.product.photos.find(x => x.isMain).url;
   }
 }

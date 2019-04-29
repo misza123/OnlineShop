@@ -1,7 +1,10 @@
 <div class="container mt-4">
-  <h3>
-    Edited product: <i>{{product.name}}</i>
-  </h3>
+  <div class="row">
+    <h3>
+      Edited product: <i>{{product.name}}</i>
+    </h3>
+    <img src="{{mainPhotoUrl}}" class="main-photo ml-3" alt="main photo">
+  </div>
   <div>
     <tabset>
       <tab heading="Data">
@@ -17,7 +20,7 @@
       </tab>
       <tab heading="Photos">
         <div class="mt-4 ml-4 mr-4">
-          <app-photo-editor [photos]="product.photos" [productId]="product.id"></app-photo-editor>
+          <app-photo-editor [photos]="product.photos" [productId]="product.id" (getProductMainPhotoChange)="setMainPhoto()"></app-photo-editor>
         </div>
       </tab>
     </tabset>

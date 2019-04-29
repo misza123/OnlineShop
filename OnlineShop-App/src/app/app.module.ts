@@ -39,6 +39,7 @@ import { ProductListResolver } from './products/_resolvers/product-list-resolver
 import { UserService } from './users/user.service';
 import { UserProfileDetailsResolver } from './users/user-profile-details-resolver';
 import { PreventUnsavedChanges } from './users/_guards/prevent-unsaved-changes.guard';
+import { PhotoService } from './products/photos/photo.service';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -93,7 +94,8 @@ export function tokenGetter() {
       ProductListResolver,
       UserService,
       UserProfileDetailsResolver,
-      PreventUnsavedChanges
+      PreventUnsavedChanges,
+      PhotoService
    ],
    bootstrap: [
       AppComponent
