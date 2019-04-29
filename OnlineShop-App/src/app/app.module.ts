@@ -13,7 +13,7 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-import { BasketComponent } from './basket/basket.component';
+import { CartComponent } from './cart/cart.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ProductListComponent } from './products/components/product-list/product-list.component';
 import { ProductDetailsComponent } from './products/components/product-details/product-details.component';
@@ -40,6 +40,7 @@ import { UserService } from './users/user.service';
 import { UserProfileDetailsResolver } from './users/user-profile-details-resolver';
 import { PreventUnsavedChanges } from './users/_guards/prevent-unsaved-changes.guard';
 import { PhotoService } from './products/photos/photo.service';
+import { CartElementComponent } from './cart/cart-element/cart-element.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -58,7 +59,8 @@ export function tokenGetter() {
       OrderDetailsComponent,
       OrderCardComponent,
       OrderListComponent,
-      BasketComponent,
+      CartComponent,
+      CartElementComponent,
       MessagesComponent,
       ProfileEditComponent,
       ProfileDetailsComponent,
