@@ -1,9 +1,25 @@
 <div class="container">
-    <div *ngIf="products?.length; else emptyCart" class="row">
+  <div *ngIf="cartElements?.length; else emptyCart" class="row">
     <h3>Your cart:</h3>
-      <div *ngFor="let product of products">
-        <app-cart-element [product]="product"></app-cart-element>
-      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product name</th>
+            <th scope="col">Prize</th>
+            <th scope="col">Count</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let element of cartElements">
+            <th scope="row">{{element.id}}</th>
+            <td>{{element.product.name}}</td>
+            <td>{{element.product.price}}PLN</td>
+            <td>{{element.count}}</td>
+            <td>{{element.product.price * element.count}}PLN</td>
+          </tr>
+      </table>
   </div>
 </div>
 

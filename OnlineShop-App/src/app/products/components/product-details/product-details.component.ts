@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../product';
-import { ProductService } from 'src/app/_services/Products/Product.service';
-import { AlertifyService } from 'src/app/_services/Alertify/AlertifyService.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/_services/Auth/Auth.service';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+import { CartService } from 'src/app/cart/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -16,10 +15,9 @@ export class ProductDetailsComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
 
-  constructor(private productService: ProductService,
-              private alertify: AlertifyService,
-              private route: ActivatedRoute,
-              private authService: AuthService) { }
+  constructor(private route: ActivatedRoute,
+              private authService: AuthService,
+              private cartService: CartService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {this.product = data.product; });
@@ -54,5 +52,10 @@ export class ProductDetailsComponent implements OnInit {
       });
     }
     return imageUrls;
+  }
+
+  addToCart() {
+    // TODO resolve counting
+    this.cartService.addToCart(this.product);
   }
 }

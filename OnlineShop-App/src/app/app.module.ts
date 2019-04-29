@@ -40,7 +40,7 @@ import { UserService } from './users/user.service';
 import { UserProfileDetailsResolver } from './users/user-profile-details-resolver';
 import { PreventUnsavedChanges } from './users/_guards/prevent-unsaved-changes.guard';
 import { PhotoService } from './products/photos/photo.service';
-import { CartElementComponent } from './cart/cart-element/cart-element.component';
+import { CartService } from './cart/cart.service';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -60,7 +60,6 @@ export function tokenGetter() {
       OrderCardComponent,
       OrderListComponent,
       CartComponent,
-      CartElementComponent,
       MessagesComponent,
       ProfileEditComponent,
       ProfileDetailsComponent,
@@ -97,7 +96,8 @@ export function tokenGetter() {
       UserService,
       UserProfileDetailsResolver,
       PreventUnsavedChanges,
-      PhotoService
+      PhotoService,
+      CartService
    ],
    bootstrap: [
       AppComponent
