@@ -12,7 +12,9 @@
         <a class="nav-link" [routerLink]="['/messages']">Messages</a>
       </li>
       <li class="nav-item" routerlinkActive="active">
-        <a class="nav-link" [routerLink]="['/cart']"><i class="fa fa-shopping-cart"></i> Cart</a>
+        <a class="nav-link" [routerLink]="['/cart']">
+          <i class="fa fa-shopping-cart"></i> Cart <span class="rounded-circle bg-warning p-1" *ngIf="productsInCartCount">{{productsInCartCount}}</span>
+        </a>
       </li>    
     </ul>
 

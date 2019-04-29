@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/Auth/Auth.service';
 import { AlertifyService } from '../_services/Alertify/AlertifyService.service';
 import { Router } from '@angular/router';
+import { CartService } from '../cart/cart.service';
 
 @Component({
   selector: 'app-nav',
@@ -10,10 +11,15 @@ import { Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
   model: any = {};
+  productsInCartCount: number;
 
-  constructor(public authService: AuthService, private alertify: AlertifyService, private router: Router) { }
+  constructor(public authService: AuthService,
+              private alertify: AlertifyService,
+              private router: Router,
+              private cartService: CartService) { }
 
   ngOnInit() {
+    this.cartService.actualElementsCount.subscribe(count => { this.productsInCartCount = count; });
   }
 
   login() {
