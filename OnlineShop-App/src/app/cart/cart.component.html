@@ -17,16 +17,17 @@
           <th scope="row">{{element.id}}</th>
           <td>{{element.product.name}}</td>
           <td>{{element.product.price}}PLN</td>
-          <td><button class="btn btn-danger"><i class="fa fa-minus"></i></button> <span
-              class="mr-2 ml-2">{{element.count}}</span> <button class="btn btn-success"><i
-                class="fa fa-plus"></i></button></td>
+          <td><button class="btn btn-danger" (click)="decreaseCount(element)"><i class="fa fa-minus"></i></button>
+            <span class="mr-2 ml-2">{{element.count}}</span>
+            <button class="btn btn-success" (click)="increaseCount(element)"><i class="fa fa-plus"></i></button>
+          </td>
           <td>{{element.product.price * element.count}}PLN</td>
-          <td><button class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+          <td><button class="btn btn-danger" (click)="removeProduct(element)"><i class="fa fa-trash"></i></button></td>
         </tr>
     </table>
     <div class="row">
-      <button class="btn btn-danger mr-2"><i class="fa fa-trash"></i> Remove All</button>
-      <button class="btn btn-success mr-2"><i class="fa fa-arrow-right"></i> Proceed</button>
+      <button class="btn btn-danger mr-2" (click)="clearCart()"><i class="fa fa-trash"></i> Remove All</button>
+      <button class="btn btn-success mr-2" (click)="proceed()"><i class="fa fa-arrow-right"></i> Proceed</button>
     </div>
   </div>
 </div>
